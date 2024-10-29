@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="fr"><head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>WinLab - Uploads</title>
+                <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&amp;family=Source+Sans+Pro&amp;display=swap" rel="stylesheet">
+                <link href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" rel="stylesheet">
+                <link rel="stylesheet" href="css/style.css">
+
+            </head>
+          
+            <body>
+              <div class="title-container">
+                <img src="images/WinLab.png" alt="Logo" class="logo">
+            </div>
+              <div class="search-container">
+                <input type="text" id="versionSearchInput" onkeyup="searchVersion()" placeholder="Chercher un fichier...">
+            </div>
+            
+                <div class="container">
+                    <header> <!-- En-tête de votre application --> </header>
+                    <div class="file-container">
+                        <table>
+                            <tbody><tr>
+                                <th>Nom</th>
+								<th>&nbsp;&nbsp;&nbsp;&nbsp;Version</th>
+                                <th>&nbsp;&nbsp;Taille</th>
+                                <th>Date de modification</th>
+                            </tr>
+                            <tr>
+                              <td>HDD Low Level Format Tool</td>
+							  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.40&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                              <td>755 Ko&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                              <td class="date-column">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;29/10/2024</td>
+                              <td><a href="/files/HDDLLF-4.40.zip" class="button">Télécharger</a></td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                    <p id="noMatchMessage" style="display: none; text-align: center; font-size: 36px; margin-bottom: 45px; margin-top: 45px;">Aucun fichier trouvé</p>
+                    <footer>
+                    <p>Site Version : 0.1</p>
+                    <p>© 2024 WinLab</p>
+                    <p>------------------------------------</p>
+                    <p><a href="https://www.youtube.com/@justwinlab">YouTube Channel</a></p>
+                    </footer>
+                </div>
+            
+            
+        </body>
+        
+        <script>
+          function searchVersion() {
+              var input, filter, table, tr, td, i, txtValue;
+              var noMatch = true; // Variable pour suivre si un résultat a été trouvé
+              input = document.getElementById("versionSearchInput");
+              filter = input.value.toUpperCase();
+              table = document.querySelector(".file-container table");
+              tr = table.getElementsByTagName("tr");
+          
+              // Loop through all table rows, and hide those who don't match the search query
+              for (i = 0; i < tr.length; i++) {
+                  td = tr[i].getElementsByTagName("td")[0]; // Column 0 is the version name column
+                  if (td) {
+                      txtValue = td.textContent || td.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                          tr[i].style.display = "";
+                          noMatch = false; // Un résultat correspondant a été trouvé
+                      } else {
+                          tr[i].style.display = "none";
+                      }
+                  }
+              }
+          
+              // Affiche le message "Aucun fichier trouvé" si aucun résultat correspondant n'est trouvé
+              var noMatchMessage = document.getElementById("noMatchMessage");
+              if (noMatch) {
+                  noMatchMessage.style.display = "block";
+              } else {
+                  noMatchMessage.style.display = "none";
+              }
+          }
+          </script>
+          </html>
